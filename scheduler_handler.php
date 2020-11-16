@@ -1,9 +1,17 @@
 <?php
-    $username = $_POST["username"]; // "name" value given to input
-    $day = $_POST["day"];
+    $username = false;
+    $day = false;
+
+    if(isset($_POST['username'])){
+        $username = $_POST['username'];
+    }
+
+    if(isset($_POST['day'])){
+        $day = $_POST['day'];
+    }
 
     if($username != ""){
-        $strHeading = "<h3> Hi " . $_POST["username"] . "</h3>";
+        $strHeading = "<h3> Hi " . $_POST['username'] . "</h3>";
     }
     else{
         $strHeading = "<h3> Hello there! </h3>";
@@ -38,7 +46,7 @@
     }
 
     if( $day != ""){
-        echo $day . "'s Schedule:" . $events;
+        echo "<strong>" . $day . "'s Schedule: </strong>" . $events;
     }
 
 ?>

@@ -19,14 +19,34 @@
 		  </div>
 		</nav>
 		<h2> Weekly Schedule </h2>
-		<form method="post" action="scheduler_handler.php">
+		<form id="form">
 			<p>Input your name:
-			<input type="text" name="username" /> </p>
+			<input type="text" name="username" id="username" /> </p>
 
 			<p> Choose a day from the week:
-			<input type="text" name="day" /> </p>
+			<input type="text" name="day" id="day" /> </p>
 
 			<input type="submit" value="Submit" />
 		</form>
+		<div id="answer"></div>
+		<script>
+			$(document).ready(function(){
+				$('#form').on('submit', function(e){
+					//Stop the form from submitting itself to the server.
+					e.preventDefault();
+					var username = $('#username').val();
+					var day = $('#day').val();
+					$.ajax({
+						type: "POST",
+						url: 'scheduler_handler.php',
+						data: {username: username, day:day},
+						success: function(data){
+							// alert(data);
+							$( "#answer" ).html(data);
+						}
+					});
+				});
+			});
+		</script>
     </body>
 </html>
